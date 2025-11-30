@@ -1,0 +1,10 @@
+{
+  "name": "algorithms",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "NaughtySora <naughtysora@proton.me>",
+  "exports": "./main.js",
+  "scripts": {
+    "watch": "node --watch ./main.js"
+  }
+}
