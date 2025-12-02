@@ -99,3 +99,40 @@ function exponential(value) {
 
 const array = Array.from({ length: 1000 }, (_, i) => i);
 const res = exponential.call(array, 699);
+
+/**
+ * @description
+ * QuickSort
+ * Average O(n log n)
+ * Worst-case O(n2) if pivot is bad
+ * 
+ * The core idea: Partition around a pivot
+ * 
+ * In-place, requires almost no extra memory O(1)
+ * Cache-friendly for arrays
+ * Can be adapted to select median, top-k, ...
+ * 
+ * has 2 variants
+ * Hoare: with 2 pointer, Left and Right, 
+ * any index pivot (usually Middle or Random, median of first, last, middle elements)
+ * 
+ * Lomuto: left pointer, store, pivot is last index
+ */
+
+function SQHoare(low = 0, hight = this.length) {
+
+}
+
+function QSLomuto() { }
+
+
+/**
+ * @description
+ * QuickSelect
+ * Average O(n log n)
+ * Worst-case O(n2) if pivot is terrible
+ * 
+ * In-place, requires almost no extra memory
+ * Cache-friendly for arrays
+ * Can be adapted to select median, top-k, ...
+ */
