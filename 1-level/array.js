@@ -119,11 +119,30 @@ const res = exponential.call(array, 699);
  * Lomuto: left pointer, store, pivot is last index
  */
 
-function SQHoare(low = 0, hight = this.length) {
-
+// Hoare variant
+function partition(left, right) {
+  const pivot = this[(left + right) >> 1];
+  while (true) {
+    while (this[left] < pivot) left++;
+    while (this[right] > pivot) right--;
+    if (left >= right) return right;
+    [this[left], this[right]] = [this[right], this[left]];
+    left++;
+    right--;
+  }
 }
 
-function QSLomuto() { }
+function quicksort() {
+  const stack = [0, this.length - 1];
+  while (stack.length > 0) {
+    const high = stack.pop();
+    const low = stack.pop();
+    if (low >= high) continue;
+    const right = partition.call(this, low, high);
+    if (low < right) stack.push(low, right);
+    if (right + 1 < high) stack.push(right + 1, high);
+  }
+}
 
 
 /**
