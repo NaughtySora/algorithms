@@ -131,7 +131,7 @@ function exponential(value) {
     }
   }
 
-  function quicksort() {
+  function quickSort() {
     const stack = [0, this.length - 1];
     while (stack.length > 0) {
       const high = stack.pop();
@@ -160,7 +160,7 @@ function exponential(value) {
     return store;
   }
 
-  function quicksort() {
+  function quickSort() {
     const stack = [0, this.length - 1];
     while (stack.length > 0) {
       const high = stack.pop();
@@ -177,10 +177,36 @@ function exponential(value) {
 /**
  * @description
  * QuickSelect
+ * Finds one value in unsorted array
+ * 
  * Average O(n log n)
  * Worst-case O(n2) if pivot is terrible
+ * also no extra memory, O(1)
+ * Cache friendly for arrays
  * 
- * In-place, requires almost no extra memory
- * Cache-friendly for arrays
- * Can be adapted to select median, top-k, ...
+ * rank-base search
+ * example: 
+ * 4th smallest in unsorted array,
+ * the median
+ * 
+ * will not sort a whole array, just finds the value
+ *  
+ * good for huge static arrays
  */
+
+function quickSelect(k) {
+  let low = 0, high = this.length - 1;
+  while (true) {
+    let store = low;
+    for (let i = low; i < high; i++) {
+      if (this[i] < this[high]) {
+        swap.call(this, i, store);
+        store++;
+      }
+    }
+    swap.call(this, store, high);
+    if (store === k) return this[store];
+    if (store < k) low = store + 1;
+    else high = store - 1;
+  }
+}
