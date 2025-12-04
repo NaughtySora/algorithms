@@ -1,5 +1,9 @@
 'use strict';
 
+function swap(i, j) {
+  [this[i], this[j]] = [this[j], this[i]];
+}
+
 /**
  * @description
  * Searching algorithms
@@ -22,8 +26,6 @@ function linear(target) {
   }
   return -1;
 }
-
-const there = linear.call([1, 2, 3, 4, 5, 6, 7, 8, 9], 4);
 
 /**
  * @description
@@ -62,8 +64,6 @@ function binary(value) {
   return -1;
 }
 
-const five = binary.call([1, 2, 3, 4, 5, 6, 7, 8, 9], 6);
-
 /**
  * @description
  * Exponential Search
@@ -97,9 +97,6 @@ function exponential(value) {
   return -1;
 }
 
-const array = Array.from({ length: 1000 }, (_, i) => i);
-const res = exponential.call(array, 699);
-
 /**
  * @description
  * QuickSort
@@ -128,7 +125,7 @@ const res = exponential.call(array, 699);
       while (this[left] < pivot) left++;
       while (this[right] > pivot) right--;
       if (left >= right) return right;
-      [this[left], this[right]] = [this[right], this[left]];
+      swap.call(this, left, right);
       left++;
       right--;
     }
@@ -145,10 +142,6 @@ const res = exponential.call(array, 699);
       if (boundary + 1 < high) stack.push(boundary + 1, high);
     }
   }
-}
-
-function swap(i, j) {
-  [this[i], this[j]] = [this[j], this[i]];
 }
 
 // Lomuto
@@ -172,7 +165,7 @@ function swap(i, j) {
     while (stack.length > 0) {
       const high = stack.pop();
       const low = stack.pop();
-       if (low >= high) continue;
+      if (low >= high) continue;
       const boundary = partition.call(this, low, high);
       stack.push(low, boundary - 1);
       stack.push(boundary + 1, high);
