@@ -210,3 +210,28 @@ function quickSelect(k) {
     else high = store - 1;
   }
 }
+
+/**
+ * @description
+ * Jump Search
+ * ~ O(sqrt(n))
+ * searching in sorted array
+ * faster than linear search
+ * 
+ * uses jumps, usually sqrt(n), where n is array length
+ * combines jumps and linear search
+ * 
+ */
+
+function jump(value) {
+  const length = this.length;
+  const step = Math.floor(Math.sqrt(length));
+  let i = 0;
+  while (i < length && this[i] < value) i += step;
+  let left = Math.max(0, i - step);
+  let right = Math.min(i, length - 1);
+  for (; left <= right; left++) {
+    if (this[left] === value) return left;
+  }
+  return -1;
+}
