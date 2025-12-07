@@ -235,3 +235,33 @@ function jump(value) {
   }
   return -1;
 }
+
+/**
+ * @description
+ * Interpolation Search
+ * 
+ * searches in sorted array
+ * 'predicts' where the value can
+ * heavily relies on array being uniformly distribute
+ * suites for numeric values, strings are not included even if they are numeric too
+ *
+ */
+
+function interpolation(value) {
+  let low = 0;
+  let high = this.length - 1;
+  while (low <= high) {
+    if (value < this[low] || value > this[high]) return -1;
+    if (this[high] === this[low]) return this[low] === value ? low : -1;
+    const position = (low
+      + (value - this[low]) / (this[high] - this[low])
+      * (high - low)) >> 0;
+    if (position < low || position > high) return -1;
+    const current = this[position];
+    if (current < value) low = position + 1;
+    else if (current > value) high = position - 1;
+    else return position;
+  }
+  return -1;
+}
+
