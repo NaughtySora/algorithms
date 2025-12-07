@@ -78,21 +78,15 @@ function binary(value) {
 function exponential(value) {
   let i = 1;
   const max = this.length - 1;
-  while (this[i] < value && i < max) i <<= 1;
+  while (i < max && this[i] < value) i <<= 1;
   let left = i >> 1;
   let right = Math.min(i, max);
   while (left <= right) {
     const middle = (left + right) >> 1;
     const current = this[middle];
-    if (current < value) {
-      left = middle + 1;
-      continue;
-    }
-    if (current > value) {
-      right = middle - 1;
-      continue;
-    }
-    return middle;
+    if (current < value) left = middle + 1;
+    else if (current > value) right = middle - 1;
+    else return middle;
   }
   return -1;
 }
@@ -265,3 +259,42 @@ function interpolation(value) {
   return -1;
 }
 
+/**
+ * @description
+ * Sliding window search
+ * that a pattern not general purpose algorithm
+ * to do different thing reuse the key idea not the whole function
+ * O(n)
+ * 
+ * Used to find unique sequences, 
+ * min/max tracking,
+ * substring containment
+ * sums
+ * frequency matching
+ * 
+ * creates 'window' with 2 pointer
+ * maintains register mapped values to indexes for fast lookup 
+ * 
+ */
+
+/** @description longest unique string */
+
+function sliding() {
+  const registry = new Map();
+  let left = 0;
+  let bestLen = 0;
+  let bestLeft = 0;
+  for (let right = 0; right < this.length; right++) {
+    const stored = registry.get(this[right]);
+    if (stored !== undefined && stored >= left) {
+      left = stored + 1;
+    }
+    registry.set(this[right], right);
+    const range = right - left + 1;
+    if (range > bestLen) {
+      bestLen = range;
+      bestLeft = left;
+    }
+  }
+  return this.slice(bestLeft, bestLeft + bestLen);
+}
