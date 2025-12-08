@@ -259,3 +259,22 @@ function interpolation(value) {
   return -1;
 }
 
+/**
+ * @description
+ * Prefix Sum
+ * O(1) for range sum look up
+ * precomputes the sums of every range starting from 0
+ * 
+ * constant time to get sum of ranges.
+ */
+
+function prefixSum() {
+  const length = this.length;
+  const sums = Array(length).fill(0);
+  sums[0] = this[0];
+  for (let i = 1; i < length; i++) {
+    sums[i] = this[i] + sums[i - 1];
+  }
+  return (start, end) =>
+    sums[end] - sums[Math.max(start - 1, 0)];
+}
