@@ -76,7 +76,6 @@ function findSubstring(value) {
   let sum = polynomialHash.call(this, pows, length);
   const max = this.length - length;
   for (let i = 0; i <= max; i++) {
-    console.log({ target, sum });
     if (sum === target) return i;
     if (i === max) break;
     sum -= (this[i].charCodeAt() * pows[length - 1]);
