@@ -303,8 +303,3 @@ function maxSubarray() {
   }
   return { value, range: [start, end] };
 }
-
-const array = [-2, -3, 4];
-// const array = [5, 5, -11, 5, 1, -7, 22];
-
-console.log(maxSubarray.call(array));
