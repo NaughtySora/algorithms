@@ -51,15 +51,9 @@ function binary(value) {
   while (left <= right) {
     const middle = (left + right) >> 1;
     const current = this[middle];
-    if (current < value) {
-      left = middle + 1;
-      continue;
-    }
-    if (current > value) {
-      right = middle - 1;
-      continue;
-    }
-    return middle;
+    if (current < value) left = middle + 1;
+    else if (current > value) right = middle - 1;
+    else return middle;
   }
   return -1;
 }
@@ -278,3 +272,39 @@ function prefixSum() {
   return (start, end) =>
     sums[end] - sums[Math.max(start - 1, 0)];
 }
+
+/**
+ * @description
+ * Kadane, max subarray
+ * maximum sum of a contiguous subarray
+ * 
+ * tracking local sum and global sum to find max subarray
+ * also there is a min Kadane simply flipped algorithm tracks min subarray
+ * 
+ */
+
+function maxSubarray() {
+  let local = 0;
+  let value = -Infinity;
+  let start = -1;
+  let end = -1;
+  let store = 0;
+  for (let i = 0; i < this.length; i++) {
+    local += this[i];
+    if (local > value) {
+      value = local;
+      end = i;
+      start = store;
+    }
+    if (local < 0) {
+      local = 0;
+      store = i + 1;
+    }
+  }
+  return { value, range: [start, end] };
+}
+
+const array = [-2, -3, 4];
+// const array = [5, 5, -11, 5, 1, -7, 22];
+
+console.log(maxSubarray.call(array));
