@@ -303,3 +303,32 @@ function maxSubarray() {
   }
   return { value, range: [start, end] };
 }
+
+/**
+ * MergeSort
+ * O(n log n) performance
+ * O(n) space
+ * 
+ * using D & C approach
+ * splits array into half, sort, merges back
+ * 
+ * if implemented recursively recursion depth is log2(n)
+ */
+
+function mergeSort(min = 0, max = this.length - 1) {
+  if (min === max) return [this[min]];
+  const middle = (min + max) >> 1;
+  const array = [];
+  const left = mergeSort.call(this, min, middle);
+  const right = mergeSort.call(this, middle + 1, max);
+  let l = 0, r = 0;
+  const limit = left.length + right.length;
+  while ((l + r) < limit) {
+    if (l >= left.length) array.push(right[r++]);
+    else if (r >= right.length) array.push(left[l++]);
+    else if (left[l] > right[r]) array.push(right[r++]);
+    else array.push(left[l++]);
+  }
+  return array;
+}
+
