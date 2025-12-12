@@ -6,12 +6,6 @@ function swap(i, j) {
 
 /**
  * @description
- * Searching algorithms
- * 
- */
-
-/**
- * @description
  * Linear Search O(n)
  * Sequential access, cache friendly
  * Beats binary search with small arrays
@@ -332,3 +326,32 @@ function mergeSort(min = 0, max = this.length - 1) {
   return array;
 }
 
+/**
+ * @description
+ * Counting subarray
+ * O(n) - time
+ * O(n) - space
+ * 
+ * finding count or all subarray 
+ * where sum of elements = target 
+ * 
+ * array : [1,2,3]
+ * target: 3
+ * count: 2
+ * subarrays: [1,2] and [3]
+ * 
+ */
+
+function countingSubarray(target) {
+  const store = new Map([[0, 1]]);
+  let count = 0;
+  let running = 0;
+  for (let i = 0; i < this.length; i++) {
+    const value = this[i];
+    running += value;
+    const diff = running - target;
+    if (store.has(diff)) count += store.get(diff);
+    store.set(running, (store.get(running) ?? 0) + 1);
+  }
+  return count;
+}
