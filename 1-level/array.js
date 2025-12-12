@@ -355,3 +355,17 @@ function countingSubarray(target) {
   }
   return count;
 }
+
+function countingXORSubarray(target) {
+  const store = new Map([[0, 1]]);
+  let count = 0;
+  let running = 0;
+  for (let i = 0; i < this.length; i++) {
+    const value = this[i];
+    running ^= value;
+    const diff = running ^ target;
+    if (store.has(diff)) count += store.get(diff);
+    store.set(running, (store.get(running) ?? 0) + 1);
+  }
+  return count;
+}
