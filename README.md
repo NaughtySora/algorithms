@@ -7,7 +7,7 @@
 
 ### Contiguous memory, means no gaps
 - [C] int[0] is base array address. int[1] is base + 4 (int size)
--  JS arrays NOT guaranteed contiguous because of mixed types, holes, engine opt, runtime changes
+- JS arrays NOT guaranteed contiguous because of mixed types, holes, engine opt, runtime changes
 - Typed Arrays and Buffers are contiguous, fixed size per element, densely packed, binary data only
 
 ### Pointer arithmetic
