@@ -4,7 +4,16 @@ const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const {
   search: { linear, binary, exponential, interpolation, jump },
+  sort: { mergeSort, quickSort: { hoareQuickSort, lomutoQuickSort } }
 } = require("../lib/array.js");
+
+const MIN = -5000;
+const MAX = 5000;
+
+const array = () => Array.from(
+  { length: 10 },
+  () => Math.floor(Math.random() * (MAX - MIN) + MIN),
+);
 
 describe('Array', () => {
   describe('search', () => {
@@ -35,4 +44,31 @@ describe('Array', () => {
       });
     };
   });
+
+  describe('sort', () => {
+    it('quickSort hoare ', () => {
+      const arr = [5, -3, 9, -24, 9, 0, 0, 1, 3, 15, 90, -2];
+      const arr2 = arr.slice(0);
+      arr.sort((a, b) => a - b);
+      hoareQuickSort.call(arr2);
+      assert.deepEqual(arr, arr2);
+    });
+
+    it('quickSort lomuto ', () => {
+      const arr = [5, -3, 9, -24, 9, 0, 0, 1, 3, 15, 90, -2];
+      const arr2 = arr.slice(0);
+      arr.sort((a, b) => a - b);
+      lomutoQuickSort.call(arr2);
+      assert.deepEqual(arr, arr2);
+    });
+
+    it('mergeSort', () => {
+      const example = [5, -3, 9, -24, 9, 0, 0, 1, 3, 15, 90, -2];
+      const arr = example.slice(0);
+      arr.sort((a, b) => a - b);
+      const arr2 = mergeSort.call(example);
+      assert.deepEqual(arr, arr2);
+    });
+  });
+
 });
