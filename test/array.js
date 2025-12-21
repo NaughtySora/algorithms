@@ -5,7 +5,9 @@ const assert = require('node:assert/strict');
 const {
   search: { linear, binary, exponential, interpolation, jump },
   sort: { mergeSort, quickSort: { hoareQuickSort, lomutoQuickSort } },
-  subarray: { max, counting, }
+  subarray: { max, counting, },
+  prefixSum,
+  quickSelect,
 } = require("../lib/array.js");
 
 const MIN = -5000;
@@ -85,5 +87,19 @@ describe('Array', () => {
       assert.equal(count, 2);
     });
   });
-  
+
+  it('prefixSum', () => {
+    const arr = [5, -3, 9, -24, 9, 0, -1, 1, -3, 15, 16, 2];
+    const sum = prefixSum.call(arr);
+    assert.equal(sum(2, 2), 9);
+    assert.equal(sum(0, 1), 2);
+    assert.equal(sum(5, 11), 30);
+  });
+
+  it('quickSelect', () => {
+    const arr = [5, -3, 9, -24, 9, 0, -1, 1, -3, 15, 16, 2];
+    assert.equal(quickSelect.call(arr, 0), -24);
+    assert.equal(quickSelect.call(arr, 5), 1);
+    assert.equal(quickSelect.call(arr, 11), 16);
+  });
 });
