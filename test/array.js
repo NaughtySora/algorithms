@@ -4,7 +4,8 @@ const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const {
   search: { linear, binary, exponential, interpolation, jump },
-  sort: { mergeSort, quickSort: { hoareQuickSort, lomutoQuickSort } }
+  sort: { mergeSort, quickSort: { hoareQuickSort, lomutoQuickSort } },
+  subarray: { max, counting, }
 } = require("../lib/array.js");
 
 const MIN = -5000;
@@ -46,7 +47,7 @@ describe('Array', () => {
   });
 
   describe('sort', () => {
-    it('quickSort hoare ', () => {
+    it('quickSort hoare', () => {
       const arr = [5, -3, 9, -24, 9, 0, 0, 1, 3, 15, 90, -2];
       const arr2 = arr.slice(0);
       arr.sort((a, b) => a - b);
@@ -54,7 +55,7 @@ describe('Array', () => {
       assert.deepEqual(arr, arr2);
     });
 
-    it('quickSort lomuto ', () => {
+    it('quickSort lomuto', () => {
       const arr = [5, -3, 9, -24, 9, 0, 0, 1, 3, 15, 90, -2];
       const arr2 = arr.slice(0);
       arr.sort((a, b) => a - b);
@@ -71,4 +72,18 @@ describe('Array', () => {
     });
   });
 
+  describe('subarray', () => {
+    const arr = [5, -3, 9, -24, 9, 0, -1, 1, -3, 15, 16, 2];
+    it('max', () => {
+      const { value, range } = max.call(arr);
+      assert.equal(value, 39);
+      assert.deepEqual(range, [4, 11]);
+    });
+
+    it('counting', () => {
+      const count = counting.call(arr, 2);
+      assert.equal(count, 2);
+    });
+  });
+  
 });
