@@ -5,7 +5,7 @@ const assert = require('node:assert/strict');
 const { substring, window } = require('../lib/string.js');
 
 describe('string', () => {
-  it('substring', () => {
+  it('find substring', () => {
     const str = 'The roots of education are bitter, but the fruit is sweet';
     assert.equal(
       substring.call(str, 'are bit'),
@@ -23,5 +23,11 @@ describe('string', () => {
       substring.call(str2, 'to'),
       str2.indexOf('to'),
     );
+  });
+
+  it('sliding window', () => {
+    assert.equal(window.call('A friend to all is a friend to none'), 'friend to');
+    assert.equal(window.call('It is the mark of an educated mind to be \
+    able to entertain a thought without accepting it'), 'ucated min');
   });
 });
