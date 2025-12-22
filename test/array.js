@@ -10,14 +10,6 @@ const {
   quickSelect,
 } = require("../lib/array.js");
 
-const MIN = -5000;
-const MAX = 5000;
-
-const array = () => Array.from(
-  { length: 10 },
-  () => Math.floor(Math.random() * (MAX - MIN) + MIN),
-);
-
 describe('Array', () => {
   describe('search', () => {
     const long = Array.from({ length: 1000 }, (_, i) => i);

@@ -17,4 +17,40 @@ describe('Linked List', () => {
     dNode.next = node;
     assert.ok(cycles.call(list));
   });
+
+  it('finding middle', () => {
+    const list = new SLL();
+    list.push(1);
+    list.push(2);
+    list.push(3);
+    list.push(4);
+    list.push(5);
+    assert.equal(middle.call(list).value, 3);
+  });
+
+  it('split into half and return new list', () => {
+    const list = new SLL();
+    list.push(1);
+    list.push(2);
+    list.push(3);
+    list.push(4);
+    list.push(5);
+    assert.deepEqual(splitHalf.call(list).toJSON(), [4, 5]);
+    assert.deepEqual(list.toJSON(), [1, 2, 3]);
+  });
+
+  it('mergeSort', () => {
+    const list = new SLL();
+    list.push(3);
+    list.push(-26);
+    list.push(0);
+    list.push(1);
+    list.push(1);
+    list.push(19);
+    list.push(-9);
+    list.push(5);
+    list.push(0);
+    mergeSort.call(list);
+    assert.deepEqual(list.toJSON(), [-26, -9, 0, 0, 1, 1, 3, 5, 19]);
+  });
 });
