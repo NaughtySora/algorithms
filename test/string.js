@@ -16,5 +16,12 @@ describe('string', () => {
       substring.call(str, 'Quality is'),
       str.indexOf('Quality is'),
     );
+    const str2 = 'It is the mark of an educated mind to be \
+    able to entertain a thought without accepting it';
+
+    assert.equal(
+      substring.call(str2, 'to'),
+      str2.indexOf('to'),
+    );
   });
 });
