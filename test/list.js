@@ -2,8 +2,10 @@
 
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
-const { SLL, cycles, mergeSort,
-  middle, splitHalf, reverse } = require('../lib/list.js');
+const {
+  SLL, cycles, mergeSort,
+  middle, splitHalf, reverse, sublistReverse
+} = require('../lib/list.js');
 
 describe('Linked List', () => {
   it('detect cycles', () => {
@@ -63,5 +65,18 @@ describe('Linked List', () => {
     list.push(4);
     reverse.call(list);
     assert.deepEqual(list.toJSON(), [4, 3, 2, 1]);
+  });
+
+  it('sublist reversing', () => {
+    const list = new SLL();
+    list.push(1);
+    list.push(2);
+    list.push(3);
+    list.push(4);
+    list.push(5);
+    list.push(6);
+    assert.deepEqual(list.toJSON(), [1, 2, 3, 4, 5, 6]);
+    sublistReverse.call(list, 2, 4);
+    assert.deepEqual(list.toJSON(), [1, 4, 3, 2, 5, 6]);
   });
 });
